@@ -1,5 +1,5 @@
 <template>
-  <b-navbar sticky toggleable="lg" type="dark" variant="primary">
+  <b-navbar fixed="top" toggleable="lg" type="dark" variant="primary">
     <b-navbar-brand to="/">سلام</b-navbar-brand>
 
     <b-navbar-toggle target="sidebar-1"></b-navbar-toggle>
@@ -12,13 +12,13 @@
       shadow
       header-class="text-white"
     >
-      <b-navbar-nav style="padding-inline-start: 16px">
+      <b-navbar-nav style="padding-inline-start: 16px;">
         <b-nav-item class="m-0" to="/"><div>الرئيسية</div></b-nav-item>
         <b-nav-item class="m-0" to="/about">من نحن</b-nav-item>
         <b-nav-item class="m-0" to="/services">خدماتنا</b-nav-item>
         <b-nav-item class="m-0" to="/products">منتجاتنا</b-nav-item>
         <b-nav-item-dropdown class="m-0" id="my-nav-dropdown" text="خدماتنا">
-          <div style="text-align: start">
+          <div style="text-align: start;">
             <b-dropdown-item>
               <span class="font-weight-bold">جميع الخدمات</span>
             </b-dropdown-item>
@@ -36,7 +36,7 @@
       </b-navbar-nav>
 
       <!-- Right aligned nav items -->
-      <b-navbar-nav style="padding-inline-start: 16px">
+      <b-navbar-nav style="padding-inline-start: 16px;">
         <b-nav-form>
           <b-form-input
             size="sm"
@@ -59,7 +59,7 @@
           text="خدماتنا"
           right
         >
-          <div style="text-align: start">
+          <div style="text-align: start;">
             <b-dropdown-item>
               <span class="font-weight-bold">جميع الخدمات</span>
             </b-dropdown-item>
@@ -91,24 +91,26 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, Ref, ref } from '@vue/composition-api';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'Nav',
-  data() {
+  setup() {
+    const services: Ref<string[]> = ref([
+      'صيانه طلمبات أعماق',
+      'صيانه مواتير غاطس',
+      'تطليع و تنزيل طلمبات',
+      'صيانه لوح كنترول',
+      'خراطه معادن',
+      'لحم معادن',
+      'حفر ابار',
+      'تطهير ابار',
+      'أوناش',
+    ]);
+
     return {
-      services: [
-        'صيانه طلمبات أعماق',
-        'صيانه مواتير غاطس',
-        'تطليع و تنزيل طلمبات',
-        'صيانه لوح كنترول',
-        'خراطه معادن',
-        'لحم معادن',
-        'حفر ابار',
-        'تطهير ابار',
-        'أوناش',
-      ],
-    }
+      services,
+    };
   },
-})
+});
 </script>

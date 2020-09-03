@@ -7,39 +7,46 @@
           <b-col>
             <b-button
               @click="$router.push('/admin/product/add')"
-              style="width: 100%"
+              style="width: 100%;"
               variant="primary"
               >اضافه منتج</b-button
             >
           </b-col>
         </b-row>
-        <div class="d-inline-block">
-          <b-button @click="logout" style="width: 100%" variant="danger"
-            >تسجيل الخروج</b-button
-          >
-        </div>
+        <b-col>
+          <div style="display: inline-block;">
+            <b-button @click="logout" style="width: 100%;" variant="danger"
+              >تسجيل الخروج</b-button
+            >
+          </div>
+        </b-col>
       </b-card-body>
     </b-card>
   </b-container>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-import SecureLS from 'secure-ls'
+import { defineComponent } from '@vue/composition-api';
+import SecureLS from 'secure-ls';
+import router from '@/router';
 const ls = new SecureLS({
   encodingType: 'aes',
   encryptionSecret: process.env.VUE_APP_SECRET,
-})
+});
 
-export default Vue.extend({
+export default defineComponent({
   name: 'Dashboard',
-  methods: {
-    logout(): void {
-      ls.set('al', false)
-      this.$router.push('/')
-    },
+  setup() {
+    function logout() {
+      ls.set('al', false);
+      router.push('/');
+    }
+
+    return {
+      logout,
+    };
   },
-})
+});
 </script>
 
 <style scoped></style>

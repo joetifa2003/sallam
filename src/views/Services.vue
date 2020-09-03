@@ -50,62 +50,65 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, Ref, ref } from '@vue/composition-api';
+import { category } from '@/types';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'Services',
-  data() {
+  setup() {
+    const services: Ref<category[]> = ref<category[]>([
+      {
+        name: 'صيانه طلمبات أعماق',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'صيانه مواتير غاطس',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'تطليع و تنزيل طلمبات',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'صيانه لوح كنترول',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'خراطه معادن',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'حفر ابار',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'تطهير ابار',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'لحم معادن',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'أوناش',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+    ]);
+
     return {
-      services: [
-        {
-          name: 'صيانه طلمبات أعماق',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'صيانه مواتير غاطس',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'تطليع و تنزيل طلمبات',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'صيانه لوح كنترول',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'خراطه معادن',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'حفر ابار',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'تطهير ابار',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'لحم معادن',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'أوناش',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-      ],
-    }
+      services,
+    };
   },
-})
+});
 </script>
 
 <style scoped></style>

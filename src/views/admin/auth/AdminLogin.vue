@@ -27,36 +27,41 @@
 </template>
 
 <script lang="ts">
-import SecureLS from 'secure-ls'
-import { SHA256 } from 'crypto-js'
-import Vue from 'vue'
+import { defineComponent, ref } from '@vue/composition-api';
+import SecureLS from 'secure-ls';
+import { SHA256 } from 'crypto-js';
+import router from '@/router';
 
 const ls = new SecureLS({
   encodingType: 'aes',
   encryptionSecret: process.env.VUE_APP_SECRET,
-})
+});
 
-export default Vue.extend({
+export default defineComponent({
   name: 'AdminLogin',
-  data() {
-    return {
-      username: '',
-      password: '',
-    }
-  },
-  methods: {
-    login(): void {
+  setup() {
+    const username = ref('');
+    const password = ref('');
+
+    function login() {
+      console.log('WE ARE GOOD');
       if (
-        SHA256(this.username).toString() ===
+        SHA256(username.value).toString() ===
           process.env.VUE_APP_ADMIN_USERNAME &&
-        SHA256(this.password).toString() === process.env.VUE_APP_ADMIN_PASSWORD
+        SHA256(password.value).toString() === process.env.VUE_APP_ADMIN_PASSWORD
       ) {
-        ls.set('al', true)
-        this.$router.push('/admin')
+        ls.set('al', true);
+        router.push('/admin');
       }
-    },
+    }
+
+    return {
+      username,
+      password,
+      login,
+    };
   },
-})
+});
 </script>
 
 <style scoped></style>

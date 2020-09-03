@@ -76,7 +76,7 @@
               <div>
                 <b-card no-body style="min-height: 384px">
                   <b-card-body class="d-flex flex-column  ">
-                    <b-card-img
+                    <b-card-img-lazy
                       class="mx-auto mb-2"
                       style="width: auto; max-height: 300px; max-width: 100%  "
                       :src="service.image"
@@ -96,114 +96,117 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import { defineComponent, ref } from '@vue/composition-api';
+import { category } from '@/types';
 
-export default Vue.extend({
+export default defineComponent({
   name: 'Home',
-  data() {
+  setup() {
+    const products = ref<category[]>([
+      {
+        name: 'مواتير الغاطس',
+        image: require('@/assets/motor.jpg'),
+        hover: false,
+      },
+      {
+        name: 'طلمبات الأعماق',
+        image: require('@/assets/tolombat.jpg'),
+        hover: false,
+      },
+      {
+        name: 'كبلات بحرية',
+        image: require('@/assets/cabel.jpg'),
+        hover: false,
+      },
+      {
+        name: 'لوحه الكنترول',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'مولد كهباء',
+        image: require('@/assets/moled.jpg'),
+        hover: false,
+      },
+      {
+        name: 'جربوكسات',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'المواسير',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'فلنشات',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'الواح طاقه شمسيه',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'اكسات',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+    ]);
+
+    const services = ref<category[]>([
+      {
+        name: 'صيانه طلمبات أعماق',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'صيانه مواتير غاطس',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'تطليع و تنزيل طلمبات',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'صيانه لوح كنترول',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'خراطه معادن',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'حفر ابار',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'تطهير ابار',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'لحم معادن',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+      {
+        name: 'أوناش',
+        image: require('@/assets/placeholder.png'),
+        hover: false,
+      },
+    ]);
+
     return {
-      test: require('@/assets/motor.jpg'),
-      products: [
-        {
-          name: 'مواتير الغاطس',
-          image: require('@/assets/motor.jpg'),
-          hover: false,
-        },
-        {
-          name: 'طلمبات الأعماق',
-          image: require('@/assets/tolombat.jpg'),
-          hover: false,
-        },
-        {
-          name: 'كبلات بحرية',
-          image: require('@/assets/cabel.jpg'),
-          hover: false,
-        },
-        {
-          name: 'لوحه الكنترول',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'مولد كهباء',
-          image: require('@/assets/moled.jpg'),
-          hover: false,
-        },
-        {
-          name: 'جربوكسات',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'المواسير',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'فلنشات',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'الواح طاقه شمسيه',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'اكسات',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-      ],
-      services: [
-        {
-          name: 'صيانه طلمبات أعماق',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'صيانه مواتير غاطس',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'تطليع و تنزيل طلمبات',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'صيانه لوح كنترول',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'خراطه معادن',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'حفر ابار',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'تطهير ابار',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'لحم معادن',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-        {
-          name: 'أوناش',
-          image: require('@/assets/placeholder.png'),
-          hover: false,
-        },
-      ],
-    }
+      products,
+      services,
+    };
   },
-  methods: {},
-})
+});
 </script>

@@ -1,4 +1,4 @@
-# sallam WEBSITE
+# sallam
 
 ## Project setup
 ```
